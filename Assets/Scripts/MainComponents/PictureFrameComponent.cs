@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PictureFrameComponent : MonoBehaviour
+public class PictureFrameComponent : FrameComponentBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void FrameRegistered()
     {
-        
+        if (Frame.FrameLayer == 0) throw new LayerNotSetException("FrameLayer is still set to default");
+        gameObject.SetLayerRecursively(Frame.FrameLayer);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MagicAlbertiFrameComponent))]
 public class ControlsMagicAlbertiFrame : MonoBehaviour
@@ -20,6 +21,8 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
         Parallax,
         Portal
     }
+
+   
     private void OnEnable()
     {
         startingPosition = transform.position;
@@ -39,11 +42,13 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
     }
 
     // this function should be called by the input system
-    void OnToggleOnAction()
+    public void OnToggleOnAction(InputAction.CallbackContext c)
     {
         ToggleFrameOn();
+        
     }
 
+   
     void ToggleFrameOn()
     {
         frame.ToggleOnOff();
@@ -54,11 +59,19 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
        // TODO: disable settings here
     }
 
-    void OnTakePictureAction()
+    public void OnTakePictureAction(InputAction.CallbackContext c)
     {
         TakePicture();
     }
+    public void OnCycleModeForwardAction(InputAction.CallbackContext c)
+    {
+        CycleModesForward();
+    }
 
+    public void OnCycleModeBackwardAction(InputAction.CallbackContext c)
+    {
+        CycleModesBackward();
+    }
     void TakePicture()
     {
         frame.TakePicture();

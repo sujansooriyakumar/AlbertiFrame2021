@@ -37,21 +37,46 @@ public interface MagicAlbertiFrame : ComponentFinderBase
     [PublicAPI]
     float ParallaxGain { get; set; }
 
+
+    [PublicAPI]
+    Transform ActiveCamera { get; }
+
+    /// <summary>
+    /// Takes a picture from the current location of the HMD
+    /// </summary>
     [PublicAPI]
     void TakePictureFromHmd();
 
+    /// <summary>
+    /// Takes a picture from the referenced Viewpoint transform.
+    /// </summary>
     [PublicAPI]
     void TakePictureFromViewPoint();
 
+    /// <summary>
+    /// Takes a Picture from specified Transform
+    /// </summary>
+    /// <param name="pictureLocationTransform"></param>
     [PublicAPI]
     void TakePictureFrom(Transform pictureLocationTransform);
 
+    /// <summary>
+    /// Takes Picture depending on state of DefaultPictureFrom variable.
+    /// </summary>
     [PublicAPI]
     void TakePicture();
 
+    /// <summary>
+    /// Turns frame off to hide contents
+    /// (Back to being window)
+    /// </summary>
     [PublicAPI]
     void TurnOff();
 
+    /// <summary>
+    /// Turns frame on to show contents
+    /// (To being a picture)
+    /// </summary>
     [PublicAPI]
     void TurnOn();
 }

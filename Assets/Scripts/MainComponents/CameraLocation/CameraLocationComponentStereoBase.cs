@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLocationComponentStereoBase : MonoBehaviour
+public abstract class CameraLocationComponentStereoBase : CameraLocationComponentBase
 {
-    // Start is called before the first frame update
-    void Start()
+    float initialFrameAngle;
+
+    protected abstract void AddOffset();
+
+    protected override void FrameRegistered()
     {
-        
+        Frame.FrameEvents.OnUpdateMainCameraLocation += UpdateThis;
+        Frame.FrameEvents.OnPictureTaken += PictureTaken;
     }
 
-    // Update is called once per frame
-    void Update()
+    void PictureTaken()
     {
-        
+    }
+
+    void UpdateThis()
+    {
+        AddOffset();
     }
 }

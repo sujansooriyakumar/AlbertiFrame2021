@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicMountComponentStereoLeft : MonoBehaviour
+public class MagicMountComponentStereoLeft : MagicMountComponentBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void ListenForRequiredFrameComponents(AlbertiFrameComponent foundFrameComponent)
     {
-        
+        switch (foundFrameComponent)
+        {
+            case CameraLocationComponentStereoLeft foundLeftCameraLocation:
+                CameraLocation = foundLeftCameraLocation;
+                break;
+            case ProjectorLocationComponentStereoLeft foundLeftProjectorLocation:
+                ProjectorLocation = foundLeftProjectorLocation;
+                break;
+            case AnchorLocation foundAnchorLocation:
+                anchorLocation = foundAnchorLocation;
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override int TargetEyeLayer => Frame.StereoLeftLayer;
+
+
+    protected override bool ShouldBeRendering => Frame.IsOn && Frame.StereoMode == StereoMode.Stereo;
+
+
 }

@@ -1,0 +1,56 @@
+{
+    "name": "New Controls 1",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "c427dee6-1a6f-4066-9eba-1f34fb745932",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "57fe7225-f0f3-419b-af6a-7752316a8ce8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2fa871a1-f1c2-4229-9a8b-8e78409514c1",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de587c4b-6369-486b-89f2-4090807b1b04",
+                    "path": "<XRInputV1::HTC::HTCViveControllerOpenXR>/triggerpressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b9daa86-3907-4853-9e59-5b04372ca4fc",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

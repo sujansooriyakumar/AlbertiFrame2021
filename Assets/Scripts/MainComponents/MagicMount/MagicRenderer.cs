@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicRenderer : MonoBehaviour
+public interface MagicRenderer
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    RenderTexture GetRenderTexture(float canvasDistance, float canvasDiagonalSize, float dotProduct,
+                                   int maxTextureSize, float resolution);
 }

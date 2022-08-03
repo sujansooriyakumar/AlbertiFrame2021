@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLocationComponentStereoRight : MonoBehaviour
+public class CameraLocationComponentStereoRight : CameraLocationComponentStereoBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void AddOffset()
     {
-        
+        transform.localPosition = new Vector3(Frame.InterOcularDistance / 2, 0, 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

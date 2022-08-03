@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsTexture : MonoBehaviour
+[CreateAssetMenu]
+public class SettingsTexture : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    [Header("You should probably not adjust these:")]
+
+    public int RenderDepth = 2000;
+
+    public Material DefaultProjectorMaterial;
+
+    [Range(1, 1.5f)]
+    public float FovMultiplierToAvoidEdgeClip = 1;
+
+    [Range(0, 1)]
+    public float DotMultiplier;
+
 }

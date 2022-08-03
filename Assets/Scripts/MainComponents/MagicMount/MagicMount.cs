@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicMount : MonoBehaviour
+public interface MagicMount : ComponentFinderBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  MountEvents MountEvents { get; }
+  int TargetEyeLayer { get; }
+  MagicAlbertiFrame Frame { get; }
 }

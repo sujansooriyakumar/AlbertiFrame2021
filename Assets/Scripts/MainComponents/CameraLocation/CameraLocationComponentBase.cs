@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLocationComponentBase : MonoBehaviour
+public abstract class CameraLocationComponentBase : FrameComponentBase, CameraLocation
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnDrawGizmos()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Frame == null) return;
+        if (!Frame.DebugMode) return;
+        Gizmos.color = Color.magenta;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawFrustum(Vector3.zero, 5, .2f, 0, 1);
+        Gizmos.DrawSphere(Vector3.zero, 0.005f);
     }
 }
