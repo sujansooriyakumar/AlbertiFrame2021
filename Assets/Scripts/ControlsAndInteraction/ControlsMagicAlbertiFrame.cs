@@ -99,7 +99,7 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
         switch (currentMode)
         {
             case ViewMode.Flat:
-                frame.UpdateMode = UpdateMode.Live;
+                frame.UpdateMode = UpdateMode.Still;
                 frame.StereoMode = StereoMode.Mono;
                 frame.ParallaxMode = ParallaxMode.Off;
                 break;

@@ -213,8 +213,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.29, y: 1.27, z: 0.06958335}
-  m_Center: {x: 0, y: 0, z: 0.030676123}
+  m_Size: {x: 1.29, y: 1.27, z: 0.2770142}
+  m_Center: {x: 0, y: 0, z: 0.016472548}
 --- !u!114 &295315736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,10 +244,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182449678544361815}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182449678544361815}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -625,7 +649,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 5094440535106611211, guid: 821a8458d80ff9b448ffb0a1b02d501a, type: 3}
+  m_ModelPrefab: {fileID: 5330693760994399815, guid: 679e62fef8b104d4bbb6b7152d493a3d, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
@@ -787,8 +811,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.19
+  m_Center: {x: 0, y: 0, z: 0.51}
 --- !u!114 &544528750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1869,7 +1893,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 5094440535106611211, guid: 821a8458d80ff9b448ffb0a1b02d501a, type: 3}
+  m_ModelPrefab: {fileID: 2168301919094253888, guid: e5edede971070c8448b052a0ddbc97ed, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
@@ -2031,8 +2055,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.19
+  m_Center: {x: 0, y: 0, z: 0.51}
 --- !u!114 &1862181028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4525,9 +4549,9 @@ MonoBehaviour:
   ignoreLayers: 
   parallaxGain: 1
   interOcularDistanceGain: 1
-  resolution: 12
-  maxMonoTextureSize: 2000
-  maxStereoTextureSize: 2000
+  resolution: 16
+  maxMonoTextureSize: 10000
+  maxStereoTextureSize: 10000
   debugMode: 0
   settingsFile: {fileID: 11400000, guid: c3301b0cbcf6e634bb62ad105ccb1196, type: 2}
 --- !u!1 &182449679524624189
