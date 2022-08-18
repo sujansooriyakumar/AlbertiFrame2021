@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Serialization;
 using UnityEngine.XR;
 
@@ -11,7 +12,9 @@ using UnityEngine.XR;
 public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
 {
 
-
+    [SerializeField] GameObject LeftOffAxisCamera;
+    [SerializeField] GameObject RightOffAxisCamera;
+    [SerializeField] GameObject MonoOffAxisCamera;
     public bool IsOn { get; private set; }
 
     [Tooltip("The Main Camera of the scene, usually the camera inside the Player Prefab from SteamVR")]
@@ -334,6 +337,9 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
         if (HmdTransform == null) throw new NullReferenceException("Taking picture from HmdFollowComponent location but HmdFollowComponent object null");
 
         PictureLocation = new PictureLocation(this, HmdTransform.position);
+        
+
+
         FinishTakingPicture();
     }
 
@@ -382,9 +388,15 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
     void FinishTakingPicture()
     {
         Debug.Log($"{AlbertiLog.Prefix} Taking Picture");
-        hmdFollow.UpdateParent();
+        HmdTransform.gameObject.GetComponent<HmdFollowComponent>().UpdateParent();
         FrameEvents.PictureTaken();
         UpdateComponentsInOrder();
+
+        //LeftOffAxisCamera.SetActive(true);
+        //RightOffAxisCamera.SetActive(true);
+
+        // switch parallax condition
+        
     }
 
 
@@ -400,6 +412,56 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
 
         if (PictureLocation == null) return;
         UpdateComponentsInOrder();
+
+        switch (stereoMode)
+        {
+            case StereoMode.Mono:
+                MonoOffAxisCamera.SetActive(true);
+                LeftOffAxisCamera.SetActive(false);
+                RightOffAxisCamera.SetActive(false);
+                break;
+            case StereoMode.Stereo:
+                MonoOffAxisCamera.SetActive(false);
+                LeftOffAxisCamera.SetActive(true);
+                RightOffAxisCamera.SetActive(true);
+                break;
+            default:
+                break;
+        }
+        switch (parallaxMode)
+        {
+            case ParallaxMode.Off:
+                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
+                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
+                MonoOffAxisCamera.GetComponent<Camera>().enabled = false;
+                break;
+            case ParallaxMode.On:
+                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
+                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
+                MonoOffAxisCamera.GetComponent<Camera>().enabled = true;
+                break;
+            default:
+                break;
+        }
+
+        switch (updateMode)
+        {
+            case UpdateMode.Live:
+                LeftOffAxisCamera.GetComponent<Camera>().enabled = true;
+                RightOffAxisCamera.GetComponent<Camera>().enabled = true;
+                MonoOffAxisCamera.GetComponent<Camera>().enabled = true;
+                break;
+            case UpdateMode.Still:
+                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
+                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
+                MonoOffAxisCamera.GetComponent<Camera>().enabled = false;
+                break;
+            default:
+                break;
+        }
+        //LeftOffAxisCamera.transform.position = HmdTransform.position;
+        //RightOffAxisCamera.transform.position = HmdTransform.position;
+        //MonoOffAxisCamera.transform.position = HmdTransform.position;
 
 
     }
