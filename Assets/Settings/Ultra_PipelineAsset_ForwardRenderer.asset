@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3659826210214813630
+--- !u!114 &-3461983560072581701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Stencil Right Opaque
+  m_Name: Stencil 2 Opaque
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Stencil Right Opaque
+    passTag: Stencil 2 Opaque
     Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 6144
+        m_Bits: 4096
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
       stencilReference: 2
       stencilCompareFunction: 3
       passOperation: 0
-      failOperation: 2
-      zFailOperation: 2
+      failOperation: 0
+      zFailOperation: 1
     cameraSettings:
       overrideCamera: 0
       restoreCamera: 1
@@ -54,9 +54,9 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: 8145216905346418275}
-  - {fileID: -3659826210214813630}
-  m_RendererFeatureMap: 6306aec59e9f097142607bd073af35cd
+  - {fileID: 1264411671103898034}
+  - {fileID: -3461983560072581701}
+  m_RendererFeatureMap: b281013ab7178c11bbada1634b90f4cf
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 1
---- !u!114 &8145216905346418275
+--- !u!114 &1264411671103898034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,17 +103,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Stencil Left Opaque
+  m_Name: Stencil 1 Opaque
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Stencil Left Opaque
+    passTag: Stencil 1 Opaque
     Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 6144
+        m_Bits: 2048
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
       overrideStencilState: 1
       stencilReference: 1
       stencilCompareFunction: 3
-      passOperation: 2
-      failOperation: 2
+      passOperation: 0
+      failOperation: 0
       zFailOperation: 1
     cameraSettings:
       overrideCamera: 0

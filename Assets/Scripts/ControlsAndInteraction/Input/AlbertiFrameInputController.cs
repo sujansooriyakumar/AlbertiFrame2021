@@ -12,7 +12,7 @@ public class AlbertiFrameInputController : MonoBehaviour
     [SerializeField] InputAction NextMode;
     [SerializeField] InputAction PreviousMode;
     [SerializeField] InputAction TakePicture;
-    [SerializeField] ControlsMagicAlbertiFrame AlbertiFrame;
+    [SerializeField] UpdatedAlbertiFrame AlbertiFrame;
 
     private void Awake()
     {
@@ -32,22 +32,21 @@ public class AlbertiFrameInputController : MonoBehaviour
 
     public void ToggleFrame(InputAction.CallbackContext c)
     {
-        AlbertiFrame.OnToggleOnAction(c);
+        AlbertiFrame.ToggleFrame();
     }
 
     public void CycleNextMode(InputAction.CallbackContext c)
     {
-        AlbertiFrame.OnCycleModeForwardAction(c);
+        AlbertiFrame.CycleModeForward();
     }
 
     public void CyclePreviousMode(InputAction.CallbackContext c)
     {
-        AlbertiFrame.OnCycleModeBackwardAction(c);
+        AlbertiFrame.CycleModeBackward();
     }
 
     public void StartTakePicture(InputAction.CallbackContext c)
     {
-        AlbertiFrame.OnTakePictureAction(c);
-
+        AlbertiFrame.TakePicture();
     }
 }

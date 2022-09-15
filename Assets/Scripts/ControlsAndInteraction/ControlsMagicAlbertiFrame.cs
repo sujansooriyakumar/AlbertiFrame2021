@@ -9,11 +9,21 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
 {
     MagicAlbertiFrameComponent frame;
     public Transform ResetToThisPosition;
+    Vector3 initialLocation;
+    Vector3 initialRotation;
     SettingsMain settings;
 
     ViewMode currentMode = 0;
     Vector3 startingPosition;
     Quaternion startingRotation;
+
+    [SerializeField] GameObject LeftCanvas;
+    [SerializeField] GameObject RightCanvas;
+    [SerializeField] GameObject MonoCanvas;
+
+    [SerializeField] GameObject LeftCamera;
+    [SerializeField] GameObject RightCamera;
+    [SerializeField] GameObject MonoCamera;
     enum ViewMode
     {
         Flat,
@@ -62,6 +72,8 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
     public void OnTakePictureAction(InputAction.CallbackContext c)
     {
         TakePicture();
+        initialLocation = transform.position;
+        initialRotation = transform.eulerAngles;
     }
     public void OnCycleModeForwardAction(InputAction.CallbackContext c)
     {
@@ -80,6 +92,59 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
     private void Update()
     {
         CheckPictorialKeyboardToggle();
+        /*if (frame.IsOn)
+        {
+            switch (currentMode)
+            {
+                case ViewMode.Flat:
+                    LeftCanvas.SetActive(false);
+                    RightCanvas.SetActive(false);
+                    MonoCanvas.SetActive(true);
+                    LeftCamera.GetComponent<Camera>().enabled = false;
+                    RightCamera.GetComponent<Camera>().enabled = false;
+                    MonoCamera.GetComponent<Camera>().enabled = false;
+
+                    frame.UpdateMode = UpdateMode.Still;
+                    frame.StereoMode = StereoMode.Mono;
+                    frame.ParallaxMode = ParallaxMode.Off;
+                    break;
+                case ViewMode.Stereoscopic:
+                    LeftCanvas.SetActive(true);
+                    RightCanvas.SetActive(true);
+                    MonoCanvas.SetActive(false);
+                    LeftCamera.GetComponent<Camera>().enabled = false;
+                    RightCamera.GetComponent<Camera>().enabled = false;
+                    MonoCamera.GetComponent<Camera>().enabled = false;
+                    frame.UpdateMode = UpdateMode.Live;
+                    frame.StereoMode = StereoMode.Stereo;
+                    frame.ParallaxMode = ParallaxMode.Off;
+                    break;
+                case ViewMode.Parallax:
+                    LeftCanvas.SetActive(false);
+                    RightCanvas.SetActive(false);
+                    MonoCanvas.SetActive(true);
+                    LeftCamera.GetComponent<Camera>().enabled = false;
+                    RightCamera.GetComponent<Camera>().enabled = false;
+                    MonoCamera.GetComponent<Camera>().enabled = true;
+                    frame.UpdateMode = UpdateMode.Live;
+                    frame.StereoMode = StereoMode.Mono;
+                    frame.ParallaxMode = ParallaxMode.On;
+                    break;
+                case ViewMode.Portal:
+                    LeftCanvas.SetActive(true);
+                    RightCanvas.SetActive(true);
+                    MonoCanvas.SetActive(false);
+                    LeftCamera.GetComponent<Camera>().enabled = true;
+                    RightCamera.GetComponent<Camera>().enabled = true;
+                    MonoCamera.GetComponent<Camera>().enabled = false;
+                    frame.UpdateMode = UpdateMode.Live;
+                    frame.StereoMode = StereoMode.Stereo;
+                    frame.ParallaxMode = ParallaxMode.On;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }*/
     }
 
     void CycleModesForward()
@@ -99,21 +164,46 @@ public class ControlsMagicAlbertiFrame : MonoBehaviour
         switch (currentMode)
         {
             case ViewMode.Flat:
+                /*LeftCanvas.SetActive(false);
+                RightCanvas.SetActive(false);
+                MonoCanvas.SetActive(true);
+                LeftCamera.GetComponent<Camera>().enabled = false;
+                RightCamera.GetComponent<Camera>().enabled = false;
+                MonoCamera.GetComponent<Camera>().enabled = false;*/
+
                 frame.UpdateMode = UpdateMode.Still;
                 frame.StereoMode = StereoMode.Mono;
                 frame.ParallaxMode = ParallaxMode.Off;
                 break;
             case ViewMode.Stereoscopic:
+                /*LeftCanvas.SetActive(true);
+                RightCanvas.SetActive(true);
+                MonoCanvas.SetActive(false);
+                LeftCamera.GetComponent<Camera>().enabled = false;
+                RightCamera.GetComponent<Camera>().enabled = false;
+                MonoCamera.GetComponent<Camera>().enabled = false;*/
                 frame.UpdateMode = UpdateMode.Live;
                 frame.StereoMode = StereoMode.Stereo;
                 frame.ParallaxMode = ParallaxMode.Off;
                 break;
             case ViewMode.Parallax:
+               /* LeftCanvas.SetActive(false);
+                RightCanvas.SetActive(false);
+                MonoCanvas.SetActive(true);
+                LeftCamera.GetComponent<Camera>().enabled = false;
+                RightCamera.GetComponent<Camera>().enabled = false;
+                MonoCamera.GetComponent<Camera>().enabled = true;*/
                 frame.UpdateMode = UpdateMode.Live;
                 frame.StereoMode = StereoMode.Mono;
                 frame.ParallaxMode = ParallaxMode.On;
                 break;
             case ViewMode.Portal:
+                /*LeftCanvas.SetActive(true);
+                RightCanvas.SetActive(true);
+                MonoCanvas.SetActive(false);
+                LeftCamera.GetComponent<Camera>().enabled = true;
+                RightCamera.GetComponent<Camera>().enabled = true;
+                MonoCamera.GetComponent<Camera>().enabled = false;*/
                 frame.UpdateMode = UpdateMode.Live;
                 frame.StereoMode = StereoMode.Stereo;
                 frame.ParallaxMode = ParallaxMode.On;

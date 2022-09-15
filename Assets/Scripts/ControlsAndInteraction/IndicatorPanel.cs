@@ -8,50 +8,44 @@ public class IndicatorPanel : MonoBehaviour
 {
     [SerializeField]
     TextMeshPro Text = default;
-
-    MagicAlbertiFrame frame;
-
-    private void Start()
-    {
-        frame = GetComponentInParent<MagicAlbertiFrame>();
-
-        if (Text == null || frame == null)
-        {
-            Debug.LogWarning($"{AlbertiLog.Prefix} Indicator panel has setup issue, so turning itself off.");
-            gameObject.SetActive(false);
-            return;
-        }
+    [SerializeField] UpdatedAlbertiFrame frame;
 
 
-        LayerUtil.SetLayerRecursively(gameObject, frame.FrameLayer);
-    }
+
+
 
     private void Update()
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-        if (!frame.IsOn)
+        if (!frame.isOn)
         {
             Text.text = "Off (Window)";
             return;
         }
 
-        if(frame.StereoMode == StereoMode.Stereo &&
-            frame.ParallaxMode == ParallaxMode.On &&
-            frame.UpdateMode == UpdateMode.Live)
+        if(frame.viewMode == UpdatedAlbertiFrame.AlbertiViewMode.FLAT)
         {
-            Text.text = "Both Stereo and Parallax (Portal)";
+            Text.text = "Flat Picture";
             return;
         }
 
-        if (frame.StereoMode == StereoMode.Stereo) stringBuilder.Append("Stereoscopic Only");
-        if (frame.ParallaxMode == ParallaxMode.On) stringBuilder.Append("Parallax Only");
+        if (frame.viewMode == UpdatedAlbertiFrame.AlbertiViewMode.PARALLAX)
+        {
+            Text.text = "Parallax Mode";
+            return;
+        }
+        if (frame.viewMode == UpdatedAlbertiFrame.AlbertiViewMode.STEREOPSIS)
+        {
+            Text.text = "Stereopsis Mode";
+            return;
+        }
 
-        if (frame.StereoMode == StereoMode.Mono &&
-                frame.ParallaxMode == ParallaxMode.Off)
+        if (frame.viewMode == UpdatedAlbertiFrame.AlbertiViewMode.PORTAL)
         {
 
-            stringBuilder.Append("Flat Picture");
+            Text.text = "Portal Mode";
+            return;
         }
 
         Text.text = stringBuilder.ToString();

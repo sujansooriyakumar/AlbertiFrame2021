@@ -15,6 +15,9 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
     [SerializeField] GameObject LeftOffAxisCamera;
     [SerializeField] GameObject RightOffAxisCamera;
     [SerializeField] GameObject MonoOffAxisCamera;
+    [SerializeField] GameObject LeftScreen;
+    [SerializeField] GameObject RightScreen;
+    [SerializeField] GameObject MonoScreen;
     public bool IsOn { get; private set; }
 
     [Tooltip("The Main Camera of the scene, usually the camera inside the Player Prefab from SteamVR")]
@@ -336,11 +339,53 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
     {
         if (HmdTransform == null) throw new NullReferenceException("Taking picture from HmdFollowComponent location but HmdFollowComponent object null");
 
-        PictureLocation = new PictureLocation(this, HmdTransform.position);
-        
 
+        if (stereoMode == StereoMode.Mono)
+        {
+            if (parallaxMode == ParallaxMode.On)
+            {
+
+            }
+            else
+            {
+                MonoOffAxisCamera.GetComponent<Camera>().enabled = true;
+                MonoOffAxisCamera.GetComponent<TrackedPoseDriver>().enabled = false;
+                Invoke("ResetCameraMono", 0.5f);
+               
+            }
+        }
+
+        if (stereoMode == StereoMode.Stereo)
+        {
+
+        }
+
+       /* RightScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialPosition(transform.position); 
+        LeftScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialPosition(transform.position);
+        MonoScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialPosition(transform.position);*/
+
+       /* RightScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialRotation(new Vector3(-transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));
+        LeftScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialRotation(new Vector3(-transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));
+        MonoScreen.GetComponent<ProjectionPlaneFollowFrame>().UpdateInitialRotation(new Vector3(-transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z));*/
+
+       /* LeftScreen.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180 + transform.eulerAngles.y, -transform.eulerAngles.z);
+        RightScreen.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180 + transform.eulerAngles.y, -transform.eulerAngles.z);
+        MonoScreen.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180 + transform.eulerAngles.y, -transform.eulerAngles.z);*/
+
+        PictureLocation = new PictureLocation(this, HmdTransform.position);
+
+       
+        //LeftOffAxisCamera.transform.position = HmdTransform.position;
+        //RightOffAxisCamera.transform.position = HmdTransform.position;
+        //MonoOffAxisCamera.transform.position = HmdTransform.position;
 
         FinishTakingPicture();
+    }
+
+    void ResetCameraMono()
+    {
+        MonoOffAxisCamera.GetComponent<Camera>().enabled = false;
+        MonoOffAxisCamera.GetComponent<TrackedPoseDriver>().enabled = true;
     }
 
     /// <summary>
@@ -351,6 +396,8 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
     public void TakePictureFromViewPoint()
     {
         PictureLocation = new PictureLocation(this, ViewPoint.transform.position);
+         
+
         FinishTakingPicture();
     }
 
@@ -391,12 +438,12 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
         HmdTransform.gameObject.GetComponent<HmdFollowComponent>().UpdateParent();
         FrameEvents.PictureTaken();
         UpdateComponentsInOrder();
-
+      
         //LeftOffAxisCamera.SetActive(true);
         //RightOffAxisCamera.SetActive(true);
 
         // switch parallax condition
-        
+
     }
 
 
@@ -412,62 +459,19 @@ public class MagicAlbertiFrameComponent : MonoBehaviour, MagicAlbertiFrame
 
         if (PictureLocation == null) return;
         UpdateComponentsInOrder();
+        
 
-        switch (stereoMode)
-        {
-            case StereoMode.Mono:
-                MonoOffAxisCamera.SetActive(true);
-                LeftOffAxisCamera.SetActive(false);
-                RightOffAxisCamera.SetActive(false);
-                break;
-            case StereoMode.Stereo:
-                MonoOffAxisCamera.SetActive(false);
-                LeftOffAxisCamera.SetActive(true);
-                RightOffAxisCamera.SetActive(true);
-                break;
-            default:
-                break;
-        }
-        switch (parallaxMode)
-        {
-            case ParallaxMode.Off:
-                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
-                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
-                MonoOffAxisCamera.GetComponent<Camera>().enabled = false;
-                break;
-            case ParallaxMode.On:
-                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
-                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
-                MonoOffAxisCamera.GetComponent<Camera>().enabled = true;
-                break;
-            default:
-                break;
-        }
-
-        switch (updateMode)
-        {
-            case UpdateMode.Live:
-                LeftOffAxisCamera.GetComponent<Camera>().enabled = true;
-                RightOffAxisCamera.GetComponent<Camera>().enabled = true;
-                MonoOffAxisCamera.GetComponent<Camera>().enabled = true;
-                break;
-            case UpdateMode.Still:
-                LeftOffAxisCamera.GetComponent<Camera>().enabled = false;
-                RightOffAxisCamera.GetComponent<Camera>().enabled = false;
-                MonoOffAxisCamera.GetComponent<Camera>().enabled = false;
-                break;
-            default:
-                break;
-        }
-        //LeftOffAxisCamera.transform.position = HmdTransform.position;
-        //RightOffAxisCamera.transform.position = HmdTransform.position;
-        //MonoOffAxisCamera.transform.position = HmdTransform.position;
 
 
     }
 
     void UpdateComponentsInOrder()
     {
+
+       
+
+
+
         //Update components in specific order to prevent order problems
         FrameEvents.UpdateMainAnchorLocation();
         FrameEvents.UpdateMainCameraLocation();

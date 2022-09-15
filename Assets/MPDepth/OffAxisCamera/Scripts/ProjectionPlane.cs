@@ -106,7 +106,7 @@ namespace OffAxisCamera
 
             if (Application.isPlaying)
             {
-                alignmentCube = new GameObject("AlignmentCube");
+            /*    alignmentCube = new GameObject("AlignmentCube");
                 alignmentCube.transform.SetParent(transform, false);
 
                 alignmentCube.transform.localPosition = Vector3.zero;
@@ -121,7 +121,7 @@ namespace OffAxisCamera
                 GameObject top = CreateAlignmentQuad();
                 topTrans = top.transform;
                 GameObject bottom = CreateAlignmentQuad();
-                bottomTrans = bottom.transform;
+                bottomTrans = bottom.transform;*/
 
             }
 
@@ -180,11 +180,11 @@ namespace OffAxisCamera
 
             if (Application.isPlaying)
             {
-                alignmentCube.SetActive(showAlignmentCube);
+                /*alignmentCube.SetActive(showAlignmentCube);
                 if (alignmentCube.activeInHierarchy)
                 {
                     UpdateAlignmentCube();
-                }
+                }*/
             }
 
 
